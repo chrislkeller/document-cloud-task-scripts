@@ -27,10 +27,10 @@ def return_document_notes():
         # loop through the notes
         for note in document_notes:
             try:
-                print '%s: %s (%s) - (%s)' % (item.title, item.description, item.page, item.access)
+                print '%s: %s (%s) - (%s)' % (note.title, note.description, note.page, note.access)
 
             except:
-                print '%s (%s) - (%s)' % (item.title, item.page, item.access)
+                print '%s (%s) - (%s)' % (note.title, note.page, note.access)
 
         # end group of notes for document
         print 'Finished printing notes for %s\n' % (document)
