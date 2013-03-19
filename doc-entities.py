@@ -1,34 +1,37 @@
 # doc-entities.py
 # uses http://datadesk.github.com/python-documentcloud/
-# searches entities for a keyword
+# to return entities associated with a document
 
 from documentcloud import DocumentCloud
-client = DocumentCloud('USERNAME', 'PASSWORD')
+from docConfig import config_settings
 
-document_id_list = ['EXAMPLE_DOCUMENT_ID']
+# authenticate with document cloud
+# set user_name & password in docConfig.py
+client = DocumentCloud(config_settings['user_name'], config_settings['password'])
 
-# get the loop length
-search_length = len(document_id_list)
+# target documents set in docConfig.py
+document_list = config_settings['document_list']
 
-# set the count
-count_length = 0
+# begin function to return entities
+def return_document_entities():
 
-while (count_length < search_length):
-    for document in document_id_list:
+    # loop through the list
+    for document in document_list:
 
-        # Fetch using the id
+        # get document in list
         obj = client.documents.get(document)
 
-        # get the ids for the project
-        obj = obj.entities
+        # get the entities from the document object
+        entities = obj.entities
 
-        for item in obj:
+        # loop through entities in the document object
+        for entity in entities:
 
-            key = item.type
-            value = item.value
+            # see what we're getting back
+            print '%s: %s (%s)' % (entity.type, entity.value, entity.relevance)
 
-            print key + '--' + value
+        # end group of entities for document
+        print 'Finished printing entities for %s\n' % (document)
 
-        # repeat loop
-        count_length = count_length + 1
-        print 'Finished'
+# run the function
+return_document_entities()

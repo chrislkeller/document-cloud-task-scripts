@@ -3,35 +3,44 @@
 # searches entities for type, value and relevance
 
 from documentcloud import DocumentCloud
-client = DocumentCloud('USERNAME', 'PASSWORD')
+from docConfig import config_settings
 
-document_id_list = ['EXAMPLE_DOCUMENT_ID']
+# authenticate with document cloud
+# set user_name & password in docConfig.py
+client = DocumentCloud(config_settings['user_name'], config_settings['password'])
 
-# get the loop length
-search_length = len(document_id_list)
+# target documents set in docConfig.py
+document_list = config_settings['document_list']
 
-# set the count
-count_length = 0
+# string to search for in entities
+target = 'Los Angeles'
 
-while (count_length < search_length):
-    for document in document_id_list:
+# set threshold for entity relevance
+relevance_threshold = 0.600
 
-        # Fetch using the id
+# begin function to return entity relevance
+def return_entity_relevance():
+
+    # loop through the list
+    for document in document_list:
+
+        # get document in list
         obj = client.documents.get(document)
 
-        # get the ids for the project
-        obj = obj.entities
+        # get the entities from the document object
+        entities = obj.entities
 
-        for item in obj:
+        # loop through entities in the document object
+        for entity in entities:
 
-            key = item.type
-            value = item.value
-            relevance = item.relevance
-            target = 'STRING TO SEARCH FOR'
+            # determine which match the entity targets or the threshold
+            if entity.value == target or entity.relevance > relevance_threshold:
 
-            if value == target or relevance > 0.400:
-                print "%s: %s (%s)" % key value str(relevance)
+                # see what we're getting back
+                print '%s: %s (%s)' % (entity.type, entity.value, entity.relevance)
 
-        # repeat loop
-        count_length = count_length + 1
-        print 'Finished
+        # end group of entities for document
+        print 'Finished printing entities for %s\n' % (document)
+
+# run the function
+return_entity_relevance()

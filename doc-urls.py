@@ -3,24 +3,44 @@
 # Gets document urls for all documents in a project
 
 from documentcloud import DocumentCloud
-client = DocumentCloud('USERNAME', 'PASSWORD')
+from docConfig import config_settings
 
-# Fetch using the id
-obj = client.projects.get(id='PROJECT_NUMERIC_ID')
+# authenticate with document cloud
+# set user_name & password in docConfig.py
+client = DocumentCloud(config_settings['user_name'], config_settings['password'])
 
-# get a list of docs in a project
-#obj = obj.document_list
+# target projects
+project_list = ['EXAMPLE_PROJECT_ID']
 
-# get the ids for the project
-obj = obj.document_ids
+# begin function to return document ids
+def return_document_ids():
 
-# separate the list
-for item in obj:
+    # create an empty document list
+    document_id_list = []
 
-    # set url components to var
-    urlPrefix = 'https://www.documentcloud.org/documents/'
-    urlSuffix = '.html'
-    url = urlPrefix + item + urlSuffix
+    # loop through the list
+    for project in project_list:
 
-    # print the list
-    print '%s' % (url)
+        # get project in list
+        obj = client.projects.get(project)
+
+        # get the ids for each document in the project
+        document_ids = obj.document_ids
+
+        # loop through ids in the document object
+        for document in document_ids:
+
+            # use to contruct document URLs
+            urlPrefix = 'https://www.documentcloud.org/documents/'
+            urlSuffix = '.html'
+            url = urlPrefix + document + urlSuffix
+
+            # use to construct a document_list
+            output = '%s' % (str(document))
+            document_id_list.append(output)
+
+    # see what we're getting back
+    print document_id_list
+
+# run the function
+return_document_ids()

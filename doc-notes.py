@@ -3,39 +3,37 @@
 # searches documents for their notes, description and the pages they are on
 
 from documentcloud import DocumentCloud
-client = DocumentCloud('USERNAME', 'PASSWORD')
+from docConfig import config_settings
 
-document_id_list = ['EXAMPLE_DOCUMENT_ID']
+# authenticate with document cloud
+# set user_name & password in docConfig.py
+client = DocumentCloud(config_settings['user_name'], config_settings['password'])
 
-# get the loop length
-search_length = len(document_id_list)
+# target documents set in docConfig.py
+document_list = config_settings['document_list']
 
-# set the count
-count_length = 0
+# begin function to return notes
+def return_document_notes():
 
-while (count_length < search_length):
-    for document in document_id_list:
+    # loop through the list
+    for document in document_list:
 
         # Fetch using the id
         obj = client.documents.get(document)
 
-        # get the ids for the project
-        obj = obj.annotations
+        # get notes from the document object
+        document_notes = obj.annotations
 
-        for item in obj:
+        # loop through the notes
+        for note in document_notes:
             try:
-                access = item.access
-                title = item.title
-                description = item.description
-                page = item.page
-                print '%s -- %s (%s)' % (title, description, page)
+                print '%s: %s (%s) - (%s)' % (item.title, item.description, item.page, item.access)
 
             except:
-                access = item.access
-                title = item.title
-                page = item.page
-                print '%s -- (%s)' % (title, page)
+                print '%s (%s) - (%s)' % (item.title, item.page, item.access)
 
-        # repeat loop
-        count_length = count_length + 1
-        print 'Finished'
+        # end group of notes for document
+        print 'Finished printing notes for %s\n' % (document)
+
+# run the function
+return_document_notes()

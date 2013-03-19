@@ -1,30 +1,37 @@
 # doc-key-value-data.py
 # uses http://datadesk.github.com/python-documentcloud/
-# pulls key/value data associated with a document referenced in the list
+# pulls key-value data associated with a document referenced in the list
 
 from documentcloud import DocumentCloud
-client = DocumentCloud('USERNAME', 'PASSWORD')
+from docConfig import config_settings
 
-document_id_list = ['EXAMPLE_DOCUMENT_ID']
+# authenticate with document cloud
+# set user_name & password in docConfig.py
+client = DocumentCloud(config_settings['user_name'], config_settings['password'])
 
-# get the loop length
-search_length = len(document_id_list)
+# target documents set in docConfig.py
+document_list = config_settings['document_list']
 
-# set the count
-count_length = 0
+# begin function to return key-value data
+def return_document_key_value_data():
 
-while (count_length < search_length):
-    for document in document_id_list:
+    # loop through the list
+    for document in document_list:
 
-        # Fetch using the id
+        # get document in list
         obj = client.documents.get(document)
 
-        # get the ids for the project
-        obj = obj.data
+        # get key-value data from the document object
+        key_value = obj.data
 
-        for key, value in obj.iteritems():
-            print '%s -- %s' % (key, value)
+        # loop through key-value in the document object
+        for type, value in key_value.iteritems():
 
-        # repeat loop
-        count_length = count_length + 1
-        print 'Finished'
+            # see what we're getting back
+            print '%s: %s' % (type, value)
+
+        # end group of key-value for document
+        print 'Finished printing key-value data for %s\n' % (document)
+
+# run the function
+return_document_key_value_data()
