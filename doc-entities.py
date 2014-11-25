@@ -1,37 +1,44 @@
-# doc-entities.py
-# uses http://datadesk.github.com/python-documentcloud/
-# to return entities associated with a document
+"""
+file: doc-entities.py
+what: given a project id returns entities associated with document
+      in the project and writes to csv
+uses: http://datadesk.github.com/python-documentcloud/
+more: https://www.documentcloud.org/help/searching
+"""
 
+# import the modules for this script
 from documentcloud import DocumentCloud
 from docConfig import config_settings
 
-# authenticate with document cloud
-# set user_name & password in docConfig.py
-client = DocumentCloud(config_settings['user_name'], config_settings['password'])
+# varible to hold the project we're targeting
+MY_PROJECT_ID = 123345
 
-# target documents set in docConfig.py
-document_list = config_settings['document_list']
+# authenticate with document cloud with user_name & password in docConfig.py
+client = DocumentCloud(
+    config_settings['user_name'], config_settings['password']
+)
 
-# begin function to return entities
-def return_document_entities():
+# function to retrieve documents from a project
+def retrieve_documents_from(project_id):
 
-    # loop through the list
-    for document in document_list:
+    # creates an object that contains the documents in the project
+    project_object = client.projects.get(id=project_id)
 
-        # get document in list
-        obj = client.documents.get(document)
+    # list to hold all of the documents ids
+    list_of_documents = project_object.document_ids
 
-        # get the entities from the document object
-        entities = obj.entities
+    # begin looping through each document in our list
+    for document in list_of_documents:
 
-        # loop through entities in the document object
-        for entity in entities:
+        # grab this particular document
+        document = client.documents.get(document)
 
-            # see what we're getting back
+        # loop through each entity associated with the document
+        for entity in document.entities:
+
+            # print the data associated with each entity
             print '%s: %s (%s)' % (entity.type, entity.value, entity.relevance)
 
-        # end group of entities for document
-        print 'Finished printing entities for %s\n' % (document)
-
-# run the function
-return_document_entities()
+# runs the function specified
+if __name__ == "__main__":
+    retrieve_documents_from(MY_PROJECT_ID)
