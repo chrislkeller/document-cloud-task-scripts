@@ -17,7 +17,7 @@ client = DocumentCloud(
 )
 
 # begin function to update document metadata
-def update_document_published_url(project_id, new_title):
+def update_document_title(project_id, new_title):
 
     # creates an object that contains the documents in the project
     project_object = client.projects.get(id=project_id)
@@ -43,4 +43,4 @@ def update_document_published_url(project_id, new_title):
     print "Finished updating metadata"
 
 if __name__ == "__main__":
-    update_document_published_url(MY_PROJECT_ID, "#")
+    update_document_title(MY_PROJECT_ID, "#")

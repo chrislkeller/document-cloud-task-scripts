@@ -1,6 +1,6 @@
 """
 file: doc-put-description.py
-what: bulk method of updating the description for a series of documents in a given project
+what:
 uses: http://datadesk.github.com/python-documentcloud/
 """
 
