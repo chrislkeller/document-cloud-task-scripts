@@ -1,40 +1,48 @@
-# doc-relevance.py
-# uses http://datadesk.github.com/python-documentcloud/
-# searches entities for type, value and relevance
+"""
+file: doc-relevance.py
+what: searches for an entity string and an entity
+      that matches a given relevance threshold
+uses: http://datadesk.github.com/python-documentcloud/
+more: https://www.documentcloud.org/help/searching
+"""
 
 from documentcloud import DocumentCloud
-from docConfig import config_settings
+from ConfigFile import config_settings
 
-# authenticate with document cloud
-# set user_name & password in docConfig.py
-client = DocumentCloud(config_settings['user_name'], config_settings['password'])
-
-# target documents set in docConfig.py
-document_list = config_settings['document_list']
+# varible to hold the project we're targeting
+MY_PROJECT_ID = 123345
 
 # string to search for in entities
-target = 'Los Angeles'
+MY_TARGET_ENTITY = "St. Louis"
 
 # set threshold for entity relevance
-relevance_threshold = 0.600
+MY_TARGET_THRESHOLD = 0.600
+
+# authenticate with document cloud with user_name & password in docConfig.py
+client = DocumentCloud(
+    config_settings["user_name"], config_settings["password"]
+)
 
 # begin function to return entity relevance
-def return_entity_relevance():
+def return_targeted_entities(project_id, target_entity, target_threshold):
 
-    # loop through the list
-    for document in document_list:
+    # creates an object that contains the documents in the project
+    project_object = client.projects.get(id=project_id)
 
-        # get document in list
-        obj = client.documents.get(document)
+    # list to hold all of the documents ids
+    list_of_documents = project_object.document_ids
 
-        # get the entities from the document object
-        entities = obj.entities
+    # begin looping through each document in our list
+    for document in list_of_documents:
 
-        # loop through entities in the document object
-        for entity in entities:
+        # grab this particular document
+        document = client.documents.get(document)
+
+        # loop through each entity associated with the document
+        for entity in document.entities:
 
             # determine which match the entity targets or the threshold
-            if entity.value == target or entity.relevance > relevance_threshold:
+            if entity.value == target_entity or entity.relevance >= target_threshold:
 
                 # see what we're getting back
                 print '%s: %s (%s)' % (entity.type, entity.value, entity.relevance)
@@ -42,5 +50,6 @@ def return_entity_relevance():
         # end group of entities for document
         print 'Finished printing entities for %s\n' % (document)
 
-# run the function
-return_entity_relevance()
+# runs the function specified
+if __name__ == "__main__":
+    return_targeted_entities(MY_PROJECT_ID, MY_TARGET_ENTITY, MY_TARGET_THRESHOLD)

@@ -1,46 +1,39 @@
-# doc-urls.py
-# uses http://datadesk.github.com/python-documentcloud/
-# Gets document urls for all documents in a project
+"""
+file: doc-urls.py
+what: gets an url for a document in a given project
+uses: http://datadesk.github.com/python-documentcloud/
+"""
 
+# import the modules for this script
 from documentcloud import DocumentCloud
-from docConfig import config_settings
+from ConfigFile import config_settings
 
-# authenticate with document cloud
-# set user_name & password in docConfig.py
-client = DocumentCloud(config_settings['user_name'], config_settings['password'])
+# varible to hold the project we're targeting
+MY_PROJECT_ID = 123345
 
-# target projects
-project_list = ['EXAMPLE_PROJECT_ID']
+# authenticate with document cloud with user_name & password in docConfig.py
+client = DocumentCloud(
+    config_settings["user_name"], config_settings["password"]
+)
 
 # begin function to return document ids
-def return_document_ids():
+def retrieve_document_urls(project_id):
 
-    # create an empty document list
-    document_id_list = []
+    # creates an object that contains the documents in the project
+    project_object = client.projects.get(id=project_id)
 
-    # loop through the list
-    for project in project_list:
+    # list to hold all of the documents ids
+    list_of_documents = project_object.document_ids
 
-        # get project in list
-        obj = client.projects.get(project)
+    # begin looping through each document in our list
+    for document in list_of_documents:
 
-        # get the ids for each document in the project
-        document_ids = obj.document_ids
+        # use to contruct document URLs
+        urlPrefix = 'https://www.documentcloud.org/documents/'
+        urlSuffix = '.html'
+        url = urlPrefix + document + urlSuffix
+        print url
 
-        # loop through ids in the document object
-        for document in document_ids:
-
-            # use to contruct document URLs
-            urlPrefix = 'https://www.documentcloud.org/documents/'
-            urlSuffix = '.html'
-            url = urlPrefix + document + urlSuffix
-
-            # use to construct a document_list
-            output = '%s' % (str(document))
-            document_id_list.append(output)
-
-    # see what we're getting back
-    print document_id_list
-
-# run the function
-return_document_ids()
+# runs the function specified
+if __name__ == "__main__":
+    retrieve_document_urls(MY_PROJECT_ID)

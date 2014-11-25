@@ -5,14 +5,14 @@ uses: http://datadesk.github.com/python-documentcloud/
 """
 
 from documentcloud import DocumentCloud
-from docConfig import config_settings
+from ConfigFile import config_settings
 
 # varible to hold the project we're targeting
 MY_PROJECT_ID = 123345
 
 # authenticate with document cloud with user_name & password in docConfig.py
 client = DocumentCloud(
-    config_settings['user_name'], config_settings['password']
+    config_settings["user_name"], config_settings["password"]
 )
 
 # begin function to return notes
@@ -30,15 +30,18 @@ def return_document_notes(project_id):
         # Fetch using the id
         obj = client.documents.get(document)
 
-        # get notes from the document object
-        document_notes = obj.annotations
+        # if there aren't notes let me know
+        if len(obj.annotations) == 0:
+            print "document does not have annotations"
 
-        # loop through the notes
-        for note in document_notes:
-            try:
-                print '%s: %s (%s) - (%s)' % (note.title, note.description, note.page, note.access)
-            except:
-                print '%s (%s) - (%s)' % (note.title, note.page, note.access)
+        # otherwise
+        else:
+            # loop through the notes
+            for note in obj.annotations:
+                try:
+                    print '%s: %s (%s) - (%s)' % (note.title, note.description, note.page, note.access)
+                except:
+                    print '%s (%s) - (%s)' % (note.title, note.page, note.access)
 
 # runs the function specified
 if __name__ == "__main__":

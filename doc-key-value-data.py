@@ -7,14 +7,14 @@ more: https://www.documentcloud.org/help/searching
 
 # import the modules for this script
 from documentcloud import DocumentCloud
-from docConfig import config_settings
+from ConfigFile import config_settings
 
 # varible to hold the project we're targeting
-MY_PROJECT_ID = 123345
+MY_PROJECT_ID = 12345
 
 # authenticate with document cloud with user_name & password in docConfig.py
 client = DocumentCloud(
-    config_settings['user_name'], config_settings['password']
+    config_settings["user_name"], config_settings["password"]
 )
 
 # begin function to return key-value data

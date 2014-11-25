@@ -1,11 +1,9 @@
 """
-file: doc-entities.py
-what: given a project id returns entities associated with document
-      in the project and writes to csv
+file: doc-put-title.py
+what: updates the title for a series of documents in a project
 uses: http://datadesk.github.com/python-documentcloud/
-more: https://www.documentcloud.org/help/searching
-"""
 
+"""
 # import the modules for this script
 from documentcloud import DocumentCloud
 from ConfigFile import config_settings
@@ -18,8 +16,8 @@ client = DocumentCloud(
     config_settings["user_name"], config_settings["password"]
 )
 
-# function to retrieve documents from a project
-def retrieve_documents_from(project_id):
+# begin function to update document metadata
+def update_document_published_url(project_id, new_title):
 
     # creates an object that contains the documents in the project
     project_object = client.projects.get(id=project_id)
@@ -28,17 +26,21 @@ def retrieve_documents_from(project_id):
     list_of_documents = project_object.document_ids
 
     # begin looping through each document in our list
-    for document in list_of_documents:
+    for document in list_of_project_documents:
 
-        # grab this particular document
-        document = client.documents.get(document)
+        # get an invidual document
+        obj = client.documents.get(document)
 
-        # loop through each entity associated with the document
-        for entity in document.entities:
+        # add the new description
+        obj.title = new_title
 
-            # print the data associated with each entity
-            print '%s: %s (%s)' % (entity.type, entity.value, entity.relevance)
+        # commit the change
+        obj.put()
 
-# runs the function specified
+        print "%s updated" % (obj)
+
+    # end group of entities for document
+    print "Finished updating metadata"
+
 if __name__ == "__main__":
-    retrieve_documents_from(MY_PROJECT_ID)
+    update_document_published_url(MY_PROJECT_ID, "#")

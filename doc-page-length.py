@@ -1,9 +1,7 @@
 """
-file: doc-entities.py
-what: given a project id returns entities associated with document
-      in the project and writes to csv
+file: doc-page-length.py
+what: gets the length of documents in a give project
 uses: http://datadesk.github.com/python-documentcloud/
-more: https://www.documentcloud.org/help/searching
 """
 
 # import the modules for this script
@@ -18,8 +16,8 @@ client = DocumentCloud(
     config_settings["user_name"], config_settings["password"]
 )
 
-# function to retrieve documents from a project
-def retrieve_documents_from(project_id):
+# function to retrieve page length from documents in a project
+def retrieve_number_of_pages(project_id):
 
     # creates an object that contains the documents in the project
     project_object = client.projects.get(id=project_id)
@@ -30,15 +28,15 @@ def retrieve_documents_from(project_id):
     # begin looping through each document in our list
     for document in list_of_documents:
 
-        # grab this particular document
-        document = client.documents.get(document)
+        # get document in list
+        obj = client.documents.get(document)
 
-        # loop through each entity associated with the document
-        for entity in document.entities:
+        # get the entities from the document object
+        number_of_pages = obj.pages
 
-            # print the data associated with each entity
-            print '%s: %s (%s)' % (entity.type, entity.value, entity.relevance)
+        # see what we're getting back
+        print "%s, %s" % (document, number_of_pages)
 
 # runs the function specified
 if __name__ == "__main__":
-    retrieve_documents_from(MY_PROJECT_ID)
+    retrieve_number_of_pages(MY_PROJECT_ID)

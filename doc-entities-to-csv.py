@@ -8,23 +8,15 @@ more: https://www.documentcloud.org/help/searching
 
 # import the modules for this script
 from documentcloud import DocumentCloud
-from docConfig import config_settings
-import logging
+from ConfigFile import config_settings
 import csv
-
-# creates instance of logger
-logger = logging.getLogger("root")
-logging.basicConfig(
-    format = "\033[1;36m%(levelname)s: %(filename)s (def %(funcName)s %(lineno)s): \033[1;37m %(message)s",
-    level=logging.DEBUG
-)
 
 # varible to hold the project we're targeting
 MY_PROJECT_ID = 123345
 
 # authenticate with document cloud with user_name & password in docConfig.py
 client = DocumentCloud(
-    config_settings['user_name'], config_settings['password']
+    config_settings["user_name"], config_settings["password"]
 )
 
 # function to retrieve documents from a project
@@ -60,12 +52,12 @@ def retrieve_documents_from(project_id):
                     document.id,
                     document.title,
                     entity.type,
-                    entity.value.rstrip('\n'),
+                    entity.value.rstrip("\n"),
                     entity.relevance
                 ]
 
                 # outputs this csv row to terminal
-                logger.debug(data_to_csv)
+                print data_to_csv
 
                 # writes this csv row to our file
                 dataForCsv.writerow(data_to_csv)
