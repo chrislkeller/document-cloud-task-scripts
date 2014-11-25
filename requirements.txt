@@ -1,0 +1,4 @@
+pyPdf==1.13
+python-dateutil==1.5
+python-documentcloud==0.162
+wsgiref==0.1.2
