@@ -3,7 +3,9 @@ document-cloud-task-scripts
 
 * [Overview](#overview)
 * [Usage](#usage)
+* [Example](#example)
 * [The Scripts](#the-scripts)
+
 
 Overview
 ========
@@ -11,6 +13,7 @@ Overview
 This is a collection of task-oriented <del>*(aka spaghetti'd)*</del> Python scripts I wrote to leverage [python-documentcloud wrapper](https://github.com/datadesk/python-documentcloud) written by the [Los Angeles Times Data Desk](https://github.com/datadesk) and [Ben Welsh](https://github.com/palewire) and perform batch tasks on [DocumentCloud](https://www.documentcloud.org/) files.
 
 The documentation for [python-documentcloud wrapper](https://github.com/datadesk/python-documentcloud) is top-notch, and you could use most of the methods contained in the library via the python shell. I've always liked to create re-usable scripts, and so here are some.
+
 
 Usage
 ======
@@ -49,6 +52,12 @@ Usage
 
         # can be csv or txt
         OUTPUT = "txt"
+
+
+Example
+=======
+
+
 
 The Scripts
 ===========
@@ -108,21 +117,17 @@ The Scripts
 
 
 
-<!--(
 
-## Links & Resources
 
-- [Blog Post](X)
-- [Repo](https://github.com/chrislkeller/document-cloud-task-scripts)
 
-)-->
+Links & Resources
+=================
 
-## License
+* [Blog Post](X)
+* [Repo](https://github.com/chrislkeller/document-cloud-task-scripts)
+
+
+License
+=======
 
 [The MIT License](http://opensource.org/licenses/MIT)
-
-
-
-
-
-
