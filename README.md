@@ -67,27 +67,27 @@ The Scripts
 
 **Scripts to work with projects**
 
-* ```**[proj_get_doc_ids.py](#)```:  returns the project titles and project ids associated with a given user account
+* ```**[proj_get_doc_ids.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_get_doc_ids.py)```:  returns the project titles and project ids associated with a given user account
 
-* ```**[proj_get_doc_lengths.py](#)```: gets the length of documents in a give project
+* ```**[proj_get_doc_lengths.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_get_doc_lengths.py)```: gets the length of documents in a give project
 
-* ```**[proj_get_doc_urls.py](#)```: script to get an url for each document in a given project
+* ```**[proj_get_doc_urls.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_get_doc_urls.py)```: script to get an url for each document in a given project
 
-* ```**[proj_update_description.py](#)```: updates the description for a series of documents in a project
+* ```**[proj_update_description.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_description.py)```: updates the description for a series of documents in a project
 
-* ```**[proj_update_published_url.py](#)```: updates the published url for a series of documents in a project
+* ```**[proj_update_published_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_published_url.py)```: updates the published url for a series of documents in a project
 
-* ```**[proj_update_related_article_url.py](#)```: updates the related article for a series of documents in a project
+* ```**[proj_update_related_article_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_related_article_url.py)```: updates the related article for a series of documents in a project
 
-* ```**[proj_update_title.py](#)```: Script to update the [titles](http://datadesk.github.com/python-documentcloud/documents.html#document_obj.title) for a series of documents in a project.
+* ```**[proj_update_title.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_title.py)```: Script to update the [titles](http://datadesk.github.com/python-documentcloud/documents.html#document_obj.title) for a series of documents in a project.
 
 **Scripts to pull metadata from documents or documents in projects**
 
-* ```**[research_entities.py](#)```: searches documents for their entities, organizes by highest relevance, and output data associated with each entity
+* ```**[research_entities.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_entities.py)```: searches documents for their entities, organizes by highest relevance, and output data associated with each entity
 
-* ```**[research_key_value_data.py](#)```: given a project id returns the key/value data for a document
+* ```**[research_key_value_data.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_key_value_data.py)```: given a project id returns the key/value data for a document
 
-* ```**[research_notes.py](#)```: searches documents for their notes and details from notes and outputs
+* ```**[research_notes.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_notes.py)```: searches documents for their notes and details from notes and outputs
 
 
 
