@@ -1,4 +1,4 @@
 .DS_Store
 *.pyc
 SCRATCHPAD.md
-ConfigFile.py
+config_file.py
