@@ -26,7 +26,7 @@ def doc_update_related_url(document_id, new_related_url):
     # creates an object that contains the given document
     obj = client.documents.get(document_id)
 
-    # set the new title
+    # set the new related article url
     obj.related_article = new_related_url
 
     # commit the change

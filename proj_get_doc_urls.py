@@ -8,7 +8,7 @@ from documentcloud import DocumentCloud
 from config_file import config_settings
 
 # varible to hold the project we're targeting
-PROJECT_ID = 1234
+PROJECT_ID = 16900
 
 # authenticate with document cloud with user_name & password in docConfig.py
 client = DocumentCloud(
