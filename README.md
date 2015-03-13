@@ -80,7 +80,7 @@ The Scripts
 
 ##### Scripts to work with documents
 
-* **[doc_get_mentions.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/doc_get_mentions.py)**
+* **[doc_get_mentions.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/document_based/doc_get_mentions.py)**
     * **What**: Given an authenticated user returns instances of a search term and the pages it appears on in a document.
 
 * **[doc_update_description.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/doc_update_description.py)**
@@ -96,7 +96,7 @@ The Scripts
             # commit the change
             obj.put()
 
-* **[doc_update_published_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/doc_update_published_url.py)**
+* **[doc_update_published_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/document_based/doc_update_published_url.py)**
     * **What**: Given an authenticated user and a document ID updates the [published url](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.published_url) of the document.
     * **Example**:
 
@@ -109,7 +109,7 @@ The Scripts
             # commit the change
             obj.put()
 
-* **[doc_update_related_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/doc_update_related_url.py)**
+* **[doc_update_related_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/document_based/doc_update_related_url.py)**
     * **What**: Given an authenticated user and a document ID updates the [related article url](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.related_article) of the document.
     * **Example**:
 
@@ -122,7 +122,7 @@ The Scripts
             # commit the change
             obj.put()
 
-* **[doc_update_title.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/doc_update_title.py)**
+* **[doc_update_title.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/document_based/doc_update_title.py)**
     * **What**: Given an authenticated user and a document ID updates the [title](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.title) of the document.
     * **Example**:
 
@@ -137,7 +137,7 @@ The Scripts
 
 ##### Scripts to work with projects
 
-* **[proj_get_ids.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_get_ids.py)**
+* **[proj_get_ids.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_get_ids.py)**
     * **What**: Given an authenticated user returns the project name and project id the user is associated with. Because many of these scripts need an ID to a specific Document Cloud project I like starting with this script.
     * **Example**:
 
@@ -145,13 +145,13 @@ The Scripts
             California State of State Address: 12099
             2015 State of the Union: 17603
 
-* **[proj_get_doc_lengths.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_get_doc_lengths.py)**
+* **[proj_get_doc_lengths.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_get_doc_lengths.py)**
     * **What**: Given an authenticated user and a project ID returns the number pages in each document in the project.
     * **Example**:
 
             [{'document': u'1371510-grand-jury-volume-5', 'pages': 286}, {'document': u'1371530-grand-jury-volume-19', 'pages': 270}, {'document': u'1371511-grand-jury-volume-6', 'pages': 270}, {'document': u'1371536-grand-jury-volume-23', 'pages': 266}, {'document': u'1371522-grand-jury-volume-13', 'pages': 258}, {'document': u'1371527-grand-jury-volume-17', 'pages': 255}, {'document': u'1371519-grand-jury-volume-12', 'pages': 255}, {'document': u'1371513-grand-jury-volume-8', 'pages': 234}, {'document': u'1371524-grand-jury-volume-15', 'pages': 231}, {'document': u'1371533-grand-jury-volume-21', 'pages': 225}, {'document': u'1371512-grand-jury-volume-7', 'pages': 215}, ...]
 
-* **[proj_get_doc_urls.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_get_doc_urls.py)**
+* **[proj_get_doc_urls.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_get_doc_urls.py)**
     * **What**: Given an authenticated user and a project ID returns an url for each document in the project.
     * **Example**:
 
@@ -161,7 +161,7 @@ The Scripts
             https://www.documentcloud.org/documents/1371617-michael-brown-private-autopsy-report.html
             https://www.documentcloud.org/documents/1371616-dna-analysis-report.html
 
-* **[proj_update_description.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_description.py)**
+* **[proj_update_description.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_update_description.py)**
     * **What**: Given an authenticated user and a project ID updates the [description](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.description) of each document in the project.
     * **Example**:
 
@@ -177,7 +177,7 @@ The Scripts
                 # commit the change
                 obj.put()
 
-* **[proj_update_published_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_published_url.py)**
+* **[proj_update_published_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_update_published_url.py)**
     * **What**: Given an authenticated user and a project ID updates the [published url](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.published_url) of each document in the project.
     * **Example**:
 
@@ -193,7 +193,7 @@ The Scripts
                 # commit the change
                 obj.put()
 
-* **[proj_update_related_article_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_related_article_url.py)**
+* **[proj_update_related_article_url.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_update_related_article_url.py)**
     * **What**: Given an authenticated user and a project ID updates the [related article url](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.related_article) of each document in the project.
     * **Example**:
 
@@ -209,7 +209,7 @@ The Scripts
                 # commit the change
                 obj.put()
 
-* **[proj_update_title.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/proj_update_title.py)**
+* **[proj_update_title.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/project_based/proj_update_title.py)**
     * **What**: Given an authenticated user and a project ID updates the [title](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.title) of each document in the project.
     * **Example**:
 
