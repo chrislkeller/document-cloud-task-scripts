@@ -40,7 +40,9 @@ Example Setup and Usage
 
 ##### Example Usage
 
-* Some scripts are written to work on an individual document. These are prefaced with ```doc_```. Some are written to work on documents within a [given project](https://www.documentcloud.org/help/collaboration). These are prefaced with ```proj_```. Others will work on either an invidual document or on each document in a project. These are prefaced with ```research_```.
+* Some scripts are written to work on an [invidual document](https://github.com/chrislkeller/document-cloud-task-scripts/tree/master/document_based). These are prefaced with ```doc_```.
+* Some are written to work on documents within a [given project](https://github.com/chrislkeller/document-cloud-task-scripts/tree/master/project_based). These are prefaced with ```[proj_```.
+* Others will work on either and generally return data from a [document or a project](https://github.com/chrislkeller/document-cloud-task-scripts/tree/master/research_based). These are prefaced with ```research_```.
 
 * I'm a big fan of Document Cloud's use of Open Calais for entity extraction. Depending on the shape of the PDFs when I upload, I find it to be a nice high-level view of data available in the documents.
 
@@ -227,7 +229,7 @@ The Scripts
 
 ##### Scripts to pull metadata from documents or documents in projects
 
-* **[research_entities.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_entities.py)**
+* **[research_entities.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_based/research_entities.py)**
     * **What**: Given an authenticated user, and an individual document id or project id, returns the [entities](http://python-documentcloud.readthedocs.org/en/latest/otherobjects.html#entities) extracted by Document Cloud using  OpenCalais during the OCR process. Organizes the entities by highest relevance and offers ```.csv``` and ```.txt``` output files.
     * **Examples**:
         * [Document .csv output file](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/data_output/1371510-grand-jury-volume-5_entities.csv)
@@ -235,10 +237,10 @@ The Scripts
         * [Project .csv output file](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/data_output/project_16900_entities.csv)
         * [Project .txt output file](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/data_output/project_16900_entities.txt)
 
-* **[research_key_value_data.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_key_value_data.py)**
+* **[research_key_value_data.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_based/research_key_value_data.py)**
     * **What**: Given an authenticated user, and an individual document id or project id, returns the [key-value data](http://python-documentcloud.readthedocs.org/en/latest/documents.html#document_obj.data). Offers ```.csv``` and ```.txt``` output files.
 
-* **[research_notes.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_notes.py)**
+* **[research_notes.py](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/research_based/research_notes.py)**
     * **What**: Given an authenticated user, and an individual document id or project id, returns the notes or [annotations](http://python-documentcloud.readthedocs.org/en/latest/otherobjects.html#annotations). Offers ```.csv``` and ```.txt``` output files.
     * **Example**:
         * [Document .csv output file](https://github.com/chrislkeller/document-cloud-task-scripts/blob/master/data_output/1390043-governor-brown-sworn-in-delivers-inaugural-address_notes.csv)
